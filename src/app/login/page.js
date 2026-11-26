@@ -42,6 +42,12 @@ export default function LoginPage() {
     }
   };
 
+  // Quick 1-click demo login helper for Student and Alumni accounts
+  const quickDemoLogin = (demoEmail) => {
+    setEmail(demoEmail);
+    setPassword('Password123!');
+  };
+
   return (
     <div className="min-h-[80vh] flex items-center justify-center px-4 py-12">
       <div className="w-full max-w-md space-y-6">
@@ -56,6 +62,31 @@ export default function LoginPage() {
           <p className="text-xs text-slate-500">
             Sign in to check risk ratings, track applications, or access administration.
           </p>
+        </div>
+
+        {/* 1-Click Demo Accounts Widget for Student & Alumni */}
+        <div className="bg-slate-50 border border-slate-200 rounded-xl p-3.5 space-y-2">
+          <span className="text-[11px] font-semibold text-slate-700 uppercase tracking-wider block">
+            Quick Demo Logins (Student &amp; Alumni):
+          </span>
+          <div className="grid grid-cols-2 gap-2 text-xs">
+            <button
+              type="button"
+              onClick={() => quickDemoLogin('aarav.alumni@interncheck.edu')}
+              className="px-3 py-2 bg-white hover:bg-slate-100 border border-slate-200 rounded-lg font-semibold text-indigo-700 flex items-center justify-center gap-2 transition-colors shadow-subtle"
+            >
+              <GraduationCap className="w-4 h-4 text-indigo-600" />
+              <span>Alumni (Aarav)</span>
+            </button>
+            <button
+              type="button"
+              onClick={() => quickDemoLogin('rohan.student@interncheck.edu')}
+              className="px-3 py-2 bg-white hover:bg-slate-100 border border-slate-200 rounded-lg font-semibold text-slate-800 flex items-center justify-center gap-2 transition-colors shadow-subtle"
+            >
+              <UserCheck className="w-4 h-4 text-emerald-600" />
+              <span>Student (Rohan)</span>
+            </button>
+          </div>
         </div>
 
         {/* Login Form */}
