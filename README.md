@@ -76,11 +76,9 @@ Internship Listing ──► Automated 10-Point Risk Assessment ──► Studen
 
 | Role | Email | Password | Access Capabilities |
 | :--- | :--- | :--- | :--- |
-| **Admin** | `admin@interncheck.edu` | `Password123!` | Moderate internships, investigate scam reports, override risk scores, manage users, platform analytics |
+| **Admin (Adarsh)** | `adarsh@interncheck.com` | `Password123!` | Platform governance, approval queues, scam investigations, risk score overrides, user analytics |
 | **Alumni** | `aarav.alumni@interncheck.edu` | `Password123!` | Submit verified senior experiences, review submissions, view alumni dashboard |
 | **Student** | `rohan.student@interncheck.edu` | `Password123!` | Browse directory, save bookmarks, report scams, track application pipeline |
-
-> *Note: 1-Click quick login buttons are also available directly on the `/login` page.*
 
 ---
 

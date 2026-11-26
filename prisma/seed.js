@@ -279,17 +279,16 @@ async function main() {
 
   console.log('--- Seeding Users (1 Admin, 2 Alumni, 5 Students) ---');
   
-  // 1 Admin
+  // 1 Admin: Only one Admin account created for Adarsh
   const adminUser = await prisma.user.create({
     data: {
-      name: 'Dr. Rajesh Sharma (Admin)',
-      email: 'admin@interncheck.edu',
+      name: 'Adarsh Verma',
+      email: 'adarsh@interncheck.com',
       password: defaultPassword,
       role: 'ADMIN',
-      college: 'Delhi Technological University',
-      branch: 'Computer Science and Engineering',
-      graduationYear: 2012,
-      avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=250',
+      college: 'Computer Science and Engineering',
+      branch: 'B.Tech CSE',
+      graduationYear: 2026,
     },
   });
 
@@ -1101,7 +1100,7 @@ async function main() {
   });
 
   console.log('=== Database Seeding Completed Successfully! ===');
-  console.log('Admin Account: admin@interncheck.edu / Password123!');
+  console.log('Admin Account: adarsh@interncheck.com / Password123!');
   console.log('Alumni Account: aarav.alumni@interncheck.edu / Password123!');
   console.log('Student Account: rohan.student@interncheck.edu / Password123!');
 }

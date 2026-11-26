@@ -42,80 +42,41 @@ export default function LoginPage() {
     }
   };
 
-  // Quick 1-click demo login helper for seamless viva demonstration!
-  const quickDemoLogin = (demoEmail) => {
-    setEmail(demoEmail);
-    setPassword('Password123!');
-  };
-
   return (
     <div className="min-h-[80vh] flex items-center justify-center px-4 py-12">
       <div className="w-full max-w-md space-y-6">
         {/* Brand Header */}
         <div className="text-center space-y-2">
-          <div className="inline-flex items-center justify-center w-12 h-12 rounded-2xl bg-gradient-to-tr from-brand-900 to-purple-800 text-white shadow-lg mb-2">
-            <ShieldCheck className="w-6 h-6 text-purple-300" />
+          <div className="inline-flex items-center justify-center w-11 h-11 rounded-xl bg-slate-900 text-white shadow-sm border border-slate-800 mb-2">
+            <ShieldCheck className="w-6 h-6 text-indigo-400" />
           </div>
-          <h1 className="text-2xl font-black text-slate-900 tracking-tight">
+          <h1 className="text-2xl font-bold text-slate-900 tracking-tight">
             Log In to InternCheck
           </h1>
           <p className="text-xs text-slate-500">
-            Sign in to check risk ratings, track applications, and share experiences.
+            Sign in to check risk ratings, track applications, or access administration.
           </p>
         </div>
 
-        {/* 1-Click Viva Demo Accounts Widget */}
-        <div className="bg-purple-50/70 border border-purple-200 rounded-2xl p-4 space-y-2.5">
-          <span className="text-[11px] font-bold text-purple-900 uppercase tracking-wider block">
-            ⚡ Quick Demo Logins for Viva & Evaluation:
-          </span>
-          <div className="grid grid-cols-3 gap-2 text-xs">
-            <button
-              type="button"
-              onClick={() => quickDemoLogin('admin@interncheck.edu')}
-              className="px-2.5 py-2 bg-white hover:bg-purple-100/60 border border-purple-200 rounded-xl font-bold text-rose-700 flex flex-col items-center gap-1 transition-all"
-            >
-              <ShieldAlert className="w-4 h-4 text-rose-600" />
-              <span>Admin</span>
-            </button>
-            <button
-              type="button"
-              onClick={() => quickDemoLogin('aarav.alumni@interncheck.edu')}
-              className="px-2.5 py-2 bg-white hover:bg-purple-100/60 border border-purple-200 rounded-xl font-bold text-purple-700 flex flex-col items-center gap-1 transition-all"
-            >
-              <GraduationCap className="w-4 h-4 text-purple-600" />
-              <span>Alumni</span>
-            </button>
-            <button
-              type="button"
-              onClick={() => quickDemoLogin('rohan.student@interncheck.edu')}
-              className="px-2.5 py-2 bg-white hover:bg-purple-100/60 border border-purple-200 rounded-xl font-bold text-brand-700 flex flex-col items-center gap-1 transition-all"
-            >
-              <UserCheck className="w-4 h-4 text-brand-600" />
-              <span>Student</span>
-            </button>
-          </div>
-        </div>
-
         {/* Login Form */}
-        <div className="bg-white rounded-3xl border border-slate-200/90 p-6 sm:p-8 shadow-sm">
+        <div className="bg-white rounded-2xl border border-slate-200 p-6 sm:p-8 shadow-subtle">
           <form onSubmit={handleLogin} className="space-y-4">
             <div>
-              <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">
-                College Email Address
+              <label className="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1">
+                Email Address
               </label>
               <input
                 type="email"
                 required
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                placeholder="name@college.edu or demo email"
-                className="w-full text-sm py-2.5 px-3.5 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-purple-500/20 focus:border-purple-600"
+                placeholder="name@college.edu"
+                className="w-full text-sm py-2.5 px-3.5 rounded-lg border border-slate-200 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-600 transition-colors"
               />
             </div>
 
             <div>
-              <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">
+              <label className="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1">
                 Password
               </label>
               <input
@@ -124,14 +85,14 @@ export default function LoginPage() {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="••••••••"
-                className="w-full text-sm py-2.5 px-3.5 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-purple-500/20 focus:border-purple-600"
+                className="w-full text-sm py-2.5 px-3.5 rounded-lg border border-slate-200 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-600 transition-colors"
               />
             </div>
 
             <button
               type="submit"
               disabled={loading}
-              className="w-full inline-flex items-center justify-center gap-2 py-3 rounded-xl bg-brand-900 text-white font-bold text-sm hover:bg-slate-800 transition-colors shadow-sm disabled:opacity-60"
+              className="w-full inline-flex items-center justify-center gap-2 py-2.5 rounded-lg bg-slate-900 text-white font-semibold text-sm hover:bg-slate-800 transition-colors shadow-sm disabled:opacity-60"
             >
               <LogIn className="w-4 h-4" />
               {loading ? 'Authenticating...' : 'Sign In'}
@@ -140,7 +101,7 @@ export default function LoginPage() {
 
           <div className="mt-6 pt-4 border-t border-slate-100 text-center text-xs text-slate-500">
             Don't have an account yet?{' '}
-            <Link href="/register" className="font-bold text-purple-600 hover:underline">
+            <Link href="/register" className="font-semibold text-indigo-600 hover:underline">
               Create an account
             </Link>
           </div>
