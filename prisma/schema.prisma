@@ -1,0 +1,282 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  STUDENT
+  ALUMNI
+  ADMIN
+}
+
+enum WorkMode {
+  REMOTE
+  HYBRID
+  ONSITE
+}
+
+enum VerificationStatus {
+  PENDING
+  APPROVED
+  REJECTED
+}
+
+enum RiskLevel {
+  LOW
+  MEDIUM
+  HIGH
+}
+
+enum ApplicationStatus {
+  INTERESTED
+  APPLIED
+  ASSESSMENT
+  INTERVIEW
+  SELECTED
+  REJECTED
+}
+
+enum ReportCategory {
+  MONEY_ASKING
+  FAKE_COMPANY
+  FAKE_JD
+  FAKE_OFFER
+  PERSONAL_INFO_MISUSE
+  SUSPICIOUS_COMMUNICATION
+  OTHER
+}
+
+enum ReportStatus {
+  PENDING
+  RESOLVED
+  REJECTED
+}
+
+enum ExperienceStatus {
+  PENDING
+  APPROVED
+  REJECTED
+}
+
+enum ActionType {
+  APPROVE_INTERNSHIP
+  REJECT_INTERNSHIP
+  OVERRIDE_RISK
+  RESOLVE_REPORT
+  REJECT_REPORT
+  APPROVE_EXPERIENCE
+  REJECT_EXPERIENCE
+  USER_ROLE_CHANGE
+}
+
+model User {
+  id              String                @id @default(uuid())
+  name            String
+  email           String                @unique
+  password        String
+  role            Role                  @default(STUDENT)
+  college         String?
+  branch          String?
+  graduationYear  Int?
+  avatar          String?
+  createdAt       DateTime              @default(now())
+  updatedAt       DateTime              @updatedAt
+
+  internships     Internship[]          @relation("UserInternships")
+  savedInternships SavedInternship[]
+  reports         InternshipReport[]
+  experiences     StudentExperience[]
+  helpfulVotes    ExperienceHelpful[]
+  applications    ApplicationTracking[]
+  adminActions    AdminAction[]
+
+  @@index([email])
+  @@index([role])
+}
+
+model Internship {
+  id                  String             @id @default(uuid())
+  title               String
+  companyName         String
+  companyWebsite      String?
+  companyEmail        String?
+  description         String             @db.Text
+  requiredSkills      String             // comma separated skills
+  domain              String             // Web Dev, AI/ML, Data Science, etc.
+  location            String             // "Bangalore, India", "Remote", etc.
+  workMode            WorkMode           @default(REMOTE)
+  stipend             String             // e.g. "₹25,000 / month" or "Unpaid"
+  stipendAmount       Int?               // Numerical value for sorting/filtering
+  isPaid              Boolean            @default(true)
+  requiresFee         Boolean            @default(false) // Red flag indicator
+  duration            String             // e.g. "3 months", "6 months"
+  applicationDeadline DateTime?
+  applicationUrl      String
+  postedDate          DateTime           @default(now())
+  listingSource       String             @default("Direct Submission")
+  verificationStatus  VerificationStatus @default(PENDING)
+  riskScore           Int                @default(0) // 0-100
+  riskLevel           RiskLevel          @default(LOW)
+  adminNotes          String?            @db.Text
+  
+  postedById          String?
+  postedBy            User?              @relation("UserInternships", fields: [postedById], references: [id], onDelete: SetNull)
+
+  createdAt           DateTime           @default(now())
+  updatedAt           DateTime           @updatedAt
+
+  riskAssessment      RiskAssessment?
+  savedBy             SavedInternship[]
+  reports             InternshipReport[]
+  applications        ApplicationTracking[]
+
+  @@index([domain])
+  @@index([workMode])
+  @@index([isPaid])
+  @@index([riskLevel])
+  @@index([verificationStatus])
+  @@index([createdAt])
+}
+
+model SavedInternship {
+  id           String      @id @default(uuid())
+  userId       String
+  user         User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  internshipId String
+  internship   Internship  @relation(fields: [internshipId], references: [id], onDelete: Cascade)
+  createdAt    DateTime    @default(now())
+
+  @@unique([userId, internshipId])
+  @@index([userId])
+}
+
+model RiskAssessment {
+  id             String       @id @default(uuid())
+  internshipId   String       @unique
+  internship     Internship   @relation(fields: [internshipId], references: [id], onDelete: Cascade)
+  score          Int          // 0-100
+  level          RiskLevel    @default(LOW)
+  isOverridden   Boolean      @default(false)
+  overriddenBy   String?      // Admin name or ID
+  overrideReason String?      @db.Text
+  assessedAt     DateTime     @default(now())
+  createdAt      DateTime     @default(now())
+  updatedAt      DateTime     @updatedAt
+
+  factors        RiskFactor[]
+
+  @@index([internshipId])
+}
+
+model RiskFactor {
+  id               String         @id @default(uuid())
+  riskAssessmentId String
+  riskAssessment   RiskAssessment @relation(fields: [riskAssessmentId], references: [id], onDelete: Cascade)
+  factorKey        String         // e.g. "APPLICATION_FEE", "FREE_EMAIL_DOMAIN"
+  title            String
+  description      String         @db.Text
+  scoreImpact      Int            // Positive (adds risk) or Negative (reduces risk)
+  isPositive       Boolean        @default(false) // True if it's a positive safety signal
+  category         String         // EMAIL, WEBSITE, STIPEND, FEE, REPORTS, URL, COMPANY
+
+  createdAt        DateTime       @default(now())
+
+  @@index([riskAssessmentId])
+}
+
+model InternshipReport {
+  id              String         @id @default(uuid())
+  internshipId    String
+  internship      Internship     @relation(fields: [internshipId], references: [id], onDelete: Cascade)
+  userId          String
+  user            User           @relation(fields: [userId], references: [id], onDelete: Cascade)
+  category        ReportCategory
+  description     String         @db.Text
+  evidenceUrl     String?
+  status          ReportStatus   @default(PENDING)
+  resolutionNotes String?        @db.Text
+  createdAt       DateTime       @default(now())
+  updatedAt       DateTime       @updatedAt
+
+  @@unique([internshipId, userId])
+  @@index([internshipId])
+  @@index([status])
+}
+
+model StudentExperience {
+  id                 String           @id @default(uuid())
+  userId             String
+  user               User             @relation(fields: [userId], references: [id], onDelete: Cascade)
+  companyName        String
+  internshipRole     String
+  domain             String?
+  duration           String           // e.g. "3 months", "6 months"
+  stipend            String           // e.g. "₹20,000 / month"
+  selectionProcess   String           @db.Text
+  interviewQuestions String           @db.Text
+  workExperience     String           @db.Text
+  offerReceived      Boolean          @default(true)
+  certificateReceived Boolean         @default(true)
+  rating             Int              // 1 to 5
+  feedback           String           @db.Text
+  adviceForJuniors   String           @db.Text
+  isVerified         Boolean          @default(false)
+  status             ExperienceStatus @default(PENDING)
+  helpfulCount       Int              @default(0)
+
+  createdAt          DateTime         @default(now())
+  updatedAt          DateTime         @updatedAt
+
+  helpfulVotes       ExperienceHelpful[]
+
+  @@index([companyName])
+  @@index([status])
+  @@index([rating])
+}
+
+model ExperienceHelpful {
+  id           String            @id @default(uuid())
+  experienceId String
+  experience   StudentExperience @relation(fields: [experienceId], references: [id], onDelete: Cascade)
+  userId       String
+  user         User              @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt    DateTime          @default(now())
+
+  @@unique([experienceId, userId])
+  @@index([experienceId])
+}
+
+model ApplicationTracking {
+  id           String            @id @default(uuid())
+  userId       String
+  user         User              @relation(fields: [userId], references: [id], onDelete: Cascade)
+  internshipId String
+  internship   Internship        @relation(fields: [internshipId], references: [id], onDelete: Cascade)
+  status       ApplicationStatus @default(INTERESTED)
+  appliedDate  DateTime          @default(now())
+  notes        String?           @db.Text
+  createdAt    DateTime          @default(now())
+  updatedAt    DateTime          @updatedAt
+
+  @@unique([userId, internshipId])
+  @@index([userId])
+  @@index([status])
+}
+
+model AdminAction {
+  id         String     @id @default(uuid())
+  adminId    String
+  admin      User       @relation(fields: [adminId], references: [id], onDelete: Cascade)
+  actionType ActionType
+  targetType String     // INTERNSHIP, REPORT, EXPERIENCE, USER
+  targetId   String
+  details    String?    @db.Text
+  createdAt  DateTime   @default(now())
+
+  @@index([adminId])
+  @@index([actionType])
+}
