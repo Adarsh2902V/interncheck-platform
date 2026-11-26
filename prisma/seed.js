@@ -382,16 +382,19 @@ async function main() {
     },
   });
 
-  console.log('--- Seeding 15 Realistic Internships (Low, Medium, High Risk) ---');
+  console.log('--- Seeding 19 Realistic Internships (Low, Medium, High Risk & Admin Queues) ---');
 
   const internshipsData = [
-    // 1. LOW RISK - Razorpay
+    // ==========================================
+    // 1-6: LOW RISK (VERIFIED / SAFE - APPROVED)
+    // ==========================================
+    // 1. Razorpay
     {
       title: 'Frontend Engineering Intern (React/Next.js)',
       companyName: 'Razorpay Software Pvt Ltd',
       companyWebsite: 'https://razorpay.com',
       companyEmail: 'careers@razorpay.com',
-      description: 'Join the merchant dashboard team at Razorpay. You will build high-performance React and Next.js interfaces handling millions of daily transactions. Strong foundation in JavaScript, DOM APIs, and CSS required.',
+      description: 'Join the merchant dashboard team at Razorpay. Build high-performance React and Next.js interfaces handling millions of daily transactions.',
       requiredSkills: 'React, Next.js, JavaScript, Tailwind CSS, REST APIs',
       domain: 'Web Development',
       location: 'Bengaluru, Karnataka',
@@ -406,7 +409,7 @@ async function main() {
       verificationStatus: 'APPROVED',
       postedById: adminUser.id,
     },
-    // 2. LOW RISK - Swiggy
+    // 2. Swiggy
     {
       title: 'Backend Engineering Intern (Node.js/Go)',
       companyName: 'Swiggy',
@@ -427,7 +430,7 @@ async function main() {
       verificationStatus: 'APPROVED',
       postedById: adminUser.id,
     },
-    // 3. LOW RISK - Postman
+    // 3. Postman
     {
       title: 'API Platform Engineering Intern',
       companyName: 'Postman',
@@ -448,7 +451,7 @@ async function main() {
       verificationStatus: 'APPROVED',
       postedById: adminUser.id,
     },
-    // 4. LOW RISK - Hasura
+    // 4. Hasura
     {
       title: 'Data Engineering & GraphQL Intern',
       companyName: 'Hasura Inc',
@@ -469,7 +472,7 @@ async function main() {
       verificationStatus: 'APPROVED',
       postedById: alumni1.id,
     },
-    // 5. LOW RISK - Zerodha
+    // 5. Zerodha
     {
       title: 'Systems & Infrastructure Intern',
       companyName: 'Zerodha Broking Ltd',
@@ -490,7 +493,7 @@ async function main() {
       verificationStatus: 'APPROVED',
       postedById: alumni2.id,
     },
-    // 6. LOW RISK - Cred
+    // 6. CRED
     {
       title: 'Mobile App Developer Intern (Flutter)',
       companyName: 'Dreamplug Technologies (CRED)',
@@ -512,28 +515,210 @@ async function main() {
       postedById: adminUser.id,
     },
 
-    // 7. MEDIUM RISK - Stealth Web Agency
+    // ==========================================
+    // 7-11: MEDIUM RISK (CALIBRATED CAUTION - APPROVED)
+    // ==========================================
+    // 7. AppStudio Freelance Hub (Missing website + Gmail + Google Form + 1 report = Score 40)
+    {
+      title: 'React Native Trainee',
+      companyName: 'AppStudio Freelance Hub',
+      companyWebsite: '',
+      companyEmail: 'appstudio.hiring@gmail.com',
+      description: 'Looking for a React Native trainee to assist in developing internal mobile components. Basic knowledge of JavaScript and React Native components needed.',
+      requiredSkills: 'React Native, JavaScript, Redux, Mobile UI',
+      domain: 'Mobile App Development',
+      location: 'Noida, Uttar Pradesh',
+      workMode: 'REMOTE',
+      stipend: '₹10,000 / month',
+      stipendAmount: 10000,
+      isPaid: true,
+      requiresFee: false,
+      duration: '3 months',
+      applicationUrl: 'https://forms.gle/appstudio2026',
+      listingSource: 'Freelance Board',
+      verificationStatus: 'APPROVED',
+      postedById: student1.id,
+    },
+    // 8. CryptoSphere Decentralized Labs (Inflated stipend + Bitly link = Score 35)
+    {
+      title: 'Junior Web3 & Smart Contract Intern',
+      companyName: 'CryptoSphere Decentralized Labs',
+      companyWebsite: 'https://cryptosphere-labs.xyz',
+      companyEmail: 'crypto.recruiting@gmail.com',
+      description: 'Work on decentralized applications and smart contracts. Earn 50000 weekly stipend potential based on sprint milestones. Apply via shortener link.',
+      requiredSkills: 'Solidity, Web3.js, Ethereum, Smart Contracts',
+      domain: 'Software Engineering',
+      location: 'Bengaluru, Karnataka',
+      workMode: 'REMOTE',
+      stipend: '₹85,000 / month',
+      stipendAmount: 85000,
+      isPaid: true,
+      requiresFee: false,
+      duration: '3 months',
+      applicationUrl: 'https://bit.ly/cryptosphere-apply-2026',
+      listingSource: 'Web3 Discord',
+      verificationStatus: 'APPROVED',
+      postedById: student2.id,
+    },
+    // 9. HyperScale AI Ventures (Sparse description + Free email + Bitly link + 1 report = Score 35)
+    {
+      title: 'GenAI Documentation & Research Intern',
+      companyName: 'HyperScale AI Ventures',
+      companyWebsite: 'https://hyperscale-ai.co',
+      companyEmail: 'hyperscaletalent@yahoo.com',
+      description: 'Help document our internal AI prompt library and create user guides.',
+      requiredSkills: 'Python, Technical Writing, LLM Prompting, Markdown',
+      domain: 'Artificial Intelligence',
+      location: 'Hyderabad, Telangana',
+      workMode: 'REMOTE',
+      stipend: '₹15,000 / month',
+      stipendAmount: 15000,
+      isPaid: true,
+      requiresFee: false,
+      duration: '2 months',
+      applicationUrl: 'https://bit.ly/hyperscale-ai-docs',
+      listingSource: 'Telegram Community',
+      verificationStatus: 'APPROVED',
+      postedById: student3.id,
+    },
+    // 10. CloudPulse Technologies (No website + Free Gmail + Sparse desc + Google Form = Score 40)
+    {
+      title: 'Cloud Operations & DevOps Trainee',
+      companyName: 'CloudPulse Technologies',
+      companyWebsite: '',
+      companyEmail: 'cloudpulseops@gmail.com',
+      description: 'Assist our engineering team with Linux server configuration, Docker builds, and deployment scripts. Freshers welcome to apply.',
+      requiredSkills: 'Linux, Docker, Bash, Cloud Basics',
+      domain: 'DevOps / Cloud',
+      location: 'Gurugram, Haryana',
+      workMode: 'REMOTE',
+      stipend: '₹12,000 / month',
+      stipendAmount: 12000,
+      isPaid: true,
+      requiresFee: false,
+      duration: '3 months',
+      applicationUrl: 'https://docs.google.com/forms/d/e/cloudpulse-intern',
+      listingSource: 'Campus WhatsApp Group',
+      verificationStatus: 'APPROVED',
+      postedById: student4.id,
+    },
+    // 11. NextWave Digital Solutions (Gmail + Sparse desc + Forms link + 1 report = Score 35)
     {
       title: 'Full Stack Web Developer Intern',
       companyName: 'NextWave Digital Solutions',
       companyWebsite: 'https://nextwavedigital.in',
-      companyEmail: 'nextwavehr@gmail.com', // Free email flag
-      description: 'We are a fast-growing digital agency looking for an enthusiastic Full Stack intern to build client landing pages and dashboards. Must know HTML, CSS, JavaScript, and Node.js. Certificate upon completion.',
+      companyEmail: 'nextwavehr@gmail.com',
+      description: 'We are an early stage digital studio hiring freshers. Work on responsive websites and landing pages for client demos.',
       requiredSkills: 'HTML, CSS, JavaScript, Express, MongoDB',
       domain: 'Web Development',
       location: 'Noida, Uttar Pradesh',
       workMode: 'REMOTE',
-      stipend: '₹8,000 / month',
-      stipendAmount: 8000,
+      stipend: '₹10,000 / month',
+      stipendAmount: 10000,
       isPaid: true,
       requiresFee: false,
       duration: '2 months',
-      applicationUrl: 'https://forms.gle/xK9zM8Q7s1NextWave', // Google form flag
+      applicationUrl: 'https://forms.gle/xK9zM8Q7s1NextWave',
       listingSource: 'LinkedIn Job Post',
-      verificationStatus: 'PENDING',
+      verificationStatus: 'APPROVED',
+      postedById: student5.id,
+    },
+
+    // ==========================================
+    // 12-14: HIGH RISK (SCAM ALERTS - APPROVED TO SHOW WARNING BANNER)
+    // ==========================================
+    // 12. Apex Global Tech Solutions (Registration fee scam = Score 93, Red Banner)
+    {
+      title: 'Software Developer Intern (100% Guaranteed Job)',
+      companyName: 'Apex Global Tech Solutions',
+      companyWebsite: '',
+      companyEmail: 'apextech.hr.team@gmail.com',
+      description: 'Urgent hiring for freshers! Work on live international software projects from home. Candidates must pay a mandatory registration fee and security deposit of ₹1,499 for software tool access and ID card creation. 100% guaranteed placement with ₹8 LPA package after 2 months.',
+      requiredSkills: 'Any basic computer knowledge',
+      domain: 'Web Development',
+      location: 'Remote Work From Home',
+      workMode: 'REMOTE',
+      stipend: '₹40,000 / month',
+      stipendAmount: 40000,
+      isPaid: true,
+      requiresFee: true,
+      duration: '2 months',
+      applicationUrl: 'https://forms.gle/scamFeeFormApex123',
+      listingSource: 'Unsolicited WhatsApp Message',
+      verificationStatus: 'APPROVED',
+      adminNotes: 'High-risk scam sample kept visible for student education and caution detection.',
       postedById: student1.id,
     },
-    // 8. MEDIUM RISK - AI Startup Lab
+    // 13. QuickEarn Infotech Services (Captcha & WhatsApp typing scam = Score 70, Red Banner)
+    {
+      title: 'Online Data Processing & Captcha Typing Intern',
+      companyName: 'QuickEarn Infotech Services',
+      companyWebsite: 'http://quickearn-typing-jobs.blogspot.com',
+      companyEmail: 'quickearndata@yahoo.com',
+      description: 'Simple captcha typing and copy paste work for college students! Earn from home daily with no interview needed. Work 2 hours daily and earn ₹15,000 weekly stipend. Send resume on whatsapp immediately to start typing.',
+      requiredSkills: 'English typing, internet connection',
+      domain: 'Data Entry',
+      location: 'All India Remote',
+      workMode: 'REMOTE',
+      stipend: '₹60,000 / month',
+      stipendAmount: 60000,
+      isPaid: true,
+      requiresFee: false,
+      duration: '1 month',
+      applicationUrl: 'https://wa.me/919876543210?text=Interested_In_Typing_Job',
+      listingSource: 'Instagram Sponsored Ad',
+      verificationStatus: 'APPROVED',
+      adminNotes: 'Classic data entry scam lure. Later demands money when fake accuracy threshold fails.',
+      postedById: student2.id,
+    },
+    // 14. QuantumCore Global Ltd (Telegram + Bank details phishing = Score 92, Red Banner)
+    {
+      title: 'AI Python Model Trainer Intern',
+      companyName: 'QuantumCore Global Ltd',
+      companyWebsite: '',
+      companyEmail: 'quantumcore_recruitment@proton.me',
+      description: 'Immediate offer letter issued! No skill required. Earn ₹1,50,000 / month by rating AI responses. Join our telegram channel to submit your bank account details and receive initial orientation payout.',
+      requiredSkills: 'Smartphone, Telegram',
+      domain: 'Artificial Intelligence',
+      location: 'Remote',
+      workMode: 'REMOTE',
+      stipend: '₹1,50,000 / month',
+      stipendAmount: 150000,
+      isPaid: true,
+      requiresFee: false,
+      duration: '1 month',
+      applicationUrl: 'https://t.me/QuantumCoreHiringOfficialBot',
+      listingSource: 'Telegram Channel',
+      verificationStatus: 'APPROVED',
+      adminNotes: 'Phishing scam targeting student bank accounts and task-based financial fraud.',
+      postedById: student3.id,
+    },
+
+    // ==========================================
+    // 15-17: PENDING REVIEW (FOR ADMIN REVIEW QUEUE)
+    // ==========================================
+    // 15. PixelForge Interactive
+    {
+      title: 'Unity 3D Game Design Intern',
+      companyName: 'PixelForge Interactive',
+      companyWebsite: 'https://pixelforgegames.in',
+      companyEmail: 'contact@pixelforgegames.in',
+      description: 'Looking for aspiring game devs to build gameplay mechanics in Unity. Candidates should be comfortable with C# scripting and physics.',
+      requiredSkills: 'Unity 3D, C#, 3D Modeling, Game Physics',
+      domain: 'Game Development',
+      location: 'Pune, Maharashtra',
+      workMode: 'HYBRID',
+      stipend: '₹12,000 / month',
+      stipendAmount: 12000,
+      isPaid: true,
+      requiresFee: false,
+      duration: '3 months',
+      applicationUrl: 'https://bit.ly/pixelforge-intern-apply',
+      listingSource: 'College Telegram Group',
+      verificationStatus: 'PENDING',
+      postedById: student3.id,
+    },
+    // 16. CognitiveByte AI Labs
     {
       title: 'Junior Machine Learning Research Intern',
       companyName: 'CognitiveByte AI Labs',
@@ -554,116 +739,32 @@ async function main() {
       verificationStatus: 'PENDING',
       postedById: student2.id,
     },
-    // 9. MEDIUM RISK - Indie Game Studio
+    // 17. BioTech Analytics Corp
     {
-      title: 'Unity 3D Game Design Intern',
-      companyName: 'PixelForge Interactive',
-      companyWebsite: 'https://pixelforgegames.in',
-      companyEmail: 'contact@pixelforgegames.in',
-      description: 'Looking for aspiring game devs to build gameplay mechanics in Unity. Short description provided.',
-      requiredSkills: 'Unity 3D, C#, 3D Modeling, Game Physics',
-      domain: 'Game Development',
-      location: 'Pune, Maharashtra',
+      title: 'Bioinformatics Data Analyst Intern',
+      companyName: 'BioTech Analytics Corp',
+      companyWebsite: 'https://biotechanalytics.org',
+      companyEmail: 'hr@biotechanalytics.org',
+      description: 'Analyze genomic sequence datasets using Python and Biopython libraries. Create visualization pipelines for clinical biomarker trials.',
+      requiredSkills: 'Python, R, Pandas, Bioinformatics',
+      domain: 'Data Science',
+      location: 'Bengaluru, Karnataka',
       workMode: 'HYBRID',
-      stipend: '₹12,000 / month',
-      stipendAmount: 12000,
+      stipend: '₹20,000 / month',
+      stipendAmount: 20000,
       isPaid: true,
       requiresFee: false,
-      duration: '3 months',
-      applicationUrl: 'https://bit.ly/pixelforge-intern-apply', // Bitly link
-      listingSource: 'College Telegram Group',
-      verificationStatus: 'PENDING',
-      postedById: student3.id,
-    },
-    // 10. MEDIUM RISK - Cloud Consulting Co
-    {
-      title: 'Cloud Security Associate Intern',
-      companyName: 'SecureNet Infra Solutions',
-      companyWebsite: 'https://securenetinfra.co',
-      companyEmail: 'support@securenetinfra.co',
-      description: 'Assist in configuring AWS IAM policies and running open-source vulnerability scans. Candidates must have basic AWS cloud knowledge.',
-      requiredSkills: 'AWS, IAM, Linux, Bash',
-      domain: 'Cybersecurity',
-      location: 'Gurugram, Haryana',
-      workMode: 'REMOTE',
-      stipend: '₹15,000 / month',
-      stipendAmount: 15000,
-      isPaid: true,
-      requiresFee: false,
-      duration: '3 months',
-      applicationUrl: 'https://securenetinfra.co/apply',
-      listingSource: 'Internshala',
+      duration: '4 months',
+      applicationUrl: 'https://biotechanalytics.org/careers',
+      listingSource: 'Direct University Outreach',
       verificationStatus: 'PENDING',
       postedById: student4.id,
     },
 
-    // 11. HIGH RISK / SCAM - Registration Fee Scam
-    {
-      title: 'Software Developer Intern (100% Guaranteed Job)',
-      companyName: 'Apex Global Tech Solutions',
-      companyWebsite: '', // No website
-      companyEmail: 'apextech.hr.team@gmail.com', // Gmail
-      description: 'Urgent hiring for freshers! Work on live international software projects from home. Candidates must pay a mandatory registration fee and security deposit of ₹1,499 for software tool access and ID card creation. 100% guaranteed placement with ₹8 LPA package after 2 months.',
-      requiredSkills: 'Any basic computer knowledge',
-      domain: 'Web Development',
-      location: 'Remote Work From Home',
-      workMode: 'REMOTE',
-      stipend: '₹40,000 / month',
-      stipendAmount: 40000,
-      isPaid: true,
-      requiresFee: true, // Fee required flag
-      duration: '2 months',
-      applicationUrl: 'https://forms.gle/scamFeeFormApex123',
-      listingSource: 'Unsolicited WhatsApp Message',
-      verificationStatus: 'REJECTED',
-      adminNotes: 'Confirmed fee scam. Requires ₹1,499 upfront for fake training kit and tools.',
-      postedById: student5.id,
-    },
-    // 12. HIGH RISK / SCAM - Captcha Typing & Data Entry
-    {
-      title: 'Online Data Processing & Captcha Typing Intern',
-      companyName: 'QuickEarn Infotech Services',
-      companyWebsite: 'http://quickearn-typing-jobs.blogspot.com', // Free blogspot
-      companyEmail: 'quickearndata@yahoo.com',
-      description: 'Simple captcha typing and copy paste work for college students! Earn from home daily with no interview needed. Work 2 hours daily and earn ₹15,000 weekly stipend. Send resume on whatsapp immediately to start typing.',
-      requiredSkills: 'English typing, internet connection',
-      domain: 'Data Entry',
-      location: 'All India Remote',
-      workMode: 'REMOTE',
-      stipend: '₹60,000 / month',
-      stipendAmount: 60000,
-      isPaid: true,
-      requiresFee: false,
-      duration: '1 month',
-      applicationUrl: 'https://wa.me/919876543210?text=Interested_In_Typing_Job',
-      listingSource: 'Instagram Sponsored Ad',
-      verificationStatus: 'REJECTED',
-      adminNotes: 'Classic data entry scam lure. Later demands money when fake accuracy threshold fails.',
-      postedById: student1.id,
-    },
-    // 13. HIGH RISK / SCAM - Unrealistic Stipend & Telegram Scam
-    {
-      title: 'AI Python Model Trainer Intern',
-      companyName: 'QuantumCore Global Ltd',
-      companyWebsite: '',
-      companyEmail: 'quantumcore_recruitment@proton.me',
-      description: 'Immediate offer letter issued! No skill required. Earn ₹1,50,000 / month by rating AI responses. Join our telegram channel to submit your bank account details and receive initial orientation payout.',
-      requiredSkills: 'Smartphone, Telegram',
-      domain: 'Artificial Intelligence',
-      location: 'Remote',
-      workMode: 'REMOTE',
-      stipend: '₹1,50,000 / month',
-      stipendAmount: 150000,
-      isPaid: true,
-      requiresFee: false,
-      duration: '1 month',
-      applicationUrl: 'https://t.me/QuantumCoreHiringOfficialBot',
-      listingSource: 'Telegram Channel',
-      verificationStatus: 'REJECTED',
-      adminNotes: 'Phishing scam targeting student bank accounts and task-based financial fraud.',
-      postedById: student2.id,
-    },
-    // 14. HIGH RISK / SCAM - Sensitive Info Harvesting
+    // ==========================================
+    // 18-19: REJECTED (FOR ADMIN REJECTED TAB & AUDIT LOGS)
+    // ==========================================
+    // 18. SecureShield Cyber Defence (Sensitive Info Harvesting)
     {
       title: 'Cybersecurity Junior Analyst Intern',
       companyName: 'SecureShield Cyber Defence',
@@ -685,7 +786,7 @@ async function main() {
       adminNotes: 'Identity theft threat: Harvesting government IDs and banking proof under fake defense guise.',
       postedById: student3.id,
     },
-    // 15. HIGH RISK / SCAM - Paid Certificate & Kit scam
+    // 19. InnoTech Career Accelerators (Fake course selling)
     {
       title: 'Web Design & Cloud Trainee Intern',
       companyName: 'InnoTech Career Accelerators',
@@ -717,23 +818,59 @@ async function main() {
     createdInternships.push(internship);
   }
 
-  console.log('--- Seeding Reports for Suspicious Internships ---');
-  // Reports against Apex Global Tech (scam 11)
-  const report1 = await prisma.internshipReport.create({
+  console.log('--- Seeding Reports for Suspicious & Moderate-Risk Internships ---');
+  // Reports against AppStudio (Medium Risk 7 -> createdInternships[6])
+  await prisma.internshipReport.create({
+    data: {
+      internshipId: createdInternships[6].id,
+      userId: student1.id,
+      category: 'SUSPICIOUS_COMMUNICATION',
+      description: 'No company website or official email. Employer asked candidates to fill out an informal Google Form without official documentation.',
+      status: 'RESOLVED',
+      resolutionNotes: 'Verified startup status. Flagged as moderate risk for student caution.',
+    },
+  });
+
+  // Reports against HyperScale AI (Medium Risk 9 -> createdInternships[8])
+  await prisma.internshipReport.create({
+    data: {
+      internshipId: createdInternships[8].id,
+      userId: student2.id,
+      category: 'FAKE_JD',
+      description: 'Very vague job description with shortened bitly URL and free Yahoo recruiter email.',
+      status: 'RESOLVED',
+      resolutionNotes: 'Early-stage venture verified; caution flag added to alert students.',
+    },
+  });
+
+  // Reports against NextWave (Medium Risk 11 -> createdInternships[10])
+  await prisma.internshipReport.create({
     data: {
       internshipId: createdInternships[10].id,
+      userId: student3.id,
+      category: 'SUSPICIOUS_COMMUNICATION',
+      description: 'Free Gmail domain used for employer communication instead of corporate domain.',
+      status: 'RESOLVED',
+      resolutionNotes: 'Small agency verified. Flagged with caution score.',
+    },
+  });
+
+  // Reports against Apex Global Tech (High Risk Scam 12 -> createdInternships[11])
+  const report1 = await prisma.internshipReport.create({
+    data: {
+      internshipId: createdInternships[11].id,
       userId: student1.id,
       category: 'MONEY_ASKING',
       description: 'The recruiter called me and demanded ₹1,499 via Google Pay before sending the offer letter. They claimed it is a refundable training deposit.',
       evidenceUrl: 'https://drive.google.com/screenshot-gpay-demand.png',
       status: 'RESOLVED',
-      resolutionNotes: 'Verified scam complaint. Listing removed and flagged.',
+      resolutionNotes: 'Verified scam complaint. Flagged with high-risk alert banner.',
     },
   });
 
   const report2 = await prisma.internshipReport.create({
     data: {
-      internshipId: createdInternships[10].id,
+      internshipId: createdInternships[11].id,
       userId: student2.id,
       category: 'FAKE_OFFER',
       description: 'They sent a fake offer letter on WhatsApp with an invalid MCA registration number and demanded money.',
@@ -742,22 +879,22 @@ async function main() {
     },
   });
 
-  // Report against QuickEarn (scam 12)
+  // Report against QuickEarn (High Risk Scam 13 -> createdInternships[12])
   await prisma.internshipReport.create({
     data: {
-      internshipId: createdInternships[11].id,
+      internshipId: createdInternships[12].id,
       userId: student3.id,
       category: 'FAKE_JD',
       description: 'They are running a captcha scam. When you submit captchas, their system arbitrarily marks 90% as wrong and demands a server maintenance charge.',
       status: 'RESOLVED',
-      resolutionNotes: 'Scam confirmed. Blocked.',
+      resolutionNotes: 'Scam confirmed. Blocked and high risk alert posted.',
     },
   });
 
-  // Report against QuantumCore (scam 13)
+  // Report against QuantumCore (High Risk Scam 14 -> createdInternships[13])
   await prisma.internshipReport.create({
     data: {
-      internshipId: createdInternships[12].id,
+      internshipId: createdInternships[13].id,
       userId: student4.id,
       category: 'PERSONAL_INFO_MISUSE',
       description: 'Immediately redirected me to a Telegram bot asking for bank account number and OTP under the guise of direct stipend credit.',
@@ -766,19 +903,19 @@ async function main() {
     },
   });
 
-  // Report against SecureShield (scam 14)
+  // Report against SecureShield (Rejected Scam 18 -> createdInternships[17])
   await prisma.internshipReport.create({
     data: {
-      internshipId: createdInternships[13].id,
+      internshipId: createdInternships[17].id,
       userId: student5.id,
       category: 'SUSPICIOUS_COMMUNICATION',
       description: 'They asked me to upload an unmasked Aadhaar card copy to an open Google Drive link before conducting any technical evaluation.',
       status: 'RESOLVED',
-      resolutionNotes: 'Flagged for identity theft attempts.',
+      resolutionNotes: 'Flagged for identity theft attempts. Rejected.',
     },
   });
 
-  console.log('--- Computing Risk Assessments & Factors for all 15 Listings ---');
+  console.log('--- Computing Risk Assessments & Factors for all 19 Listings ---');
   for (const internship of createdInternships) {
     const reportCount = await prisma.internshipReport.count({
       where: { internshipId: internship.id },
@@ -1094,7 +1231,7 @@ async function main() {
       adminId: adminUser.id,
       actionType: 'REJECT_INTERNSHIP',
       targetType: 'INTERNSHIP',
-      targetId: createdInternships[10].id,
+      targetId: createdInternships[11].id,
       details: 'Flagged and rejected Apex Global Tech for violating safety policy by demanding application fees.',
     },
   });
